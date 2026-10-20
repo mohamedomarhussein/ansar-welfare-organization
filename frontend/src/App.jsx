@@ -11,6 +11,8 @@ import IslamicLectures from './pages/IslamicLectures'
 import Contact from './pages/Contact'
 import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
+import AdminLogin from './pages/admin/AdminLogin'
+import AdminDashboard from './pages/admin/AdminDashboard'
 
 import './App.css'
 
@@ -36,10 +38,17 @@ function NotFound() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <div className="app-shell" style={{ paddingTop: '86px' }}>
-        <main className="main-content">
-          <Routes>
+      <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/*"
+          element={
+            <>
+              <Navbar />
+              <div className="app-shell" style={{ paddingTop: '86px' }}>
+                <main className="main-content">
+                  <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
@@ -49,12 +58,15 @@ export default function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-
-        <Footer />
-      </div>
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+              </div>
+            </>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   )
 }
