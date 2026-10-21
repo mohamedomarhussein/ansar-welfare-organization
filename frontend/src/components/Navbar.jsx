@@ -1,21 +1,35 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { HeartHandshake, Menu, X } from 'lucide-react'
+import { HeartHandshake, Menu, X, Languages, ChevronDown } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const links = [
-  { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Services', path: '/services' },
-  { label: 'Donations', path: '/donations' },
-  { label: 'Islamic Lectures', path: '/lectures' },
-  { label: 'Contact', path: '/contact' },
+  { key: 'home', path: '/' },
+  { key: 'about', path: '/about' },
+  { key: 'services', path: '/services' },
+  { key: 'donations', path: '/donations' },
+  { key: 'lectures', path: '/lectures' },
+  { key: 'contact', path: '/contact' },
+]
+
+const languageOptions = [
+  { code: 'en', label: 'English' },
+  { code: 'sw', label: 'Kiswahili' },
+  { code: 'so', label: 'Soomaali' },
+  { code: 'ar', label: 'العربية' },
 ]
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { language, changeLanguage, t } = useLanguage()
 
   function closeMenu() {
     setMenuOpen(false)
+  }
+
+  function handleLanguageChange(event) {
+    changeLanguage(event.target.value)
+    closeMenu()
   }
 
   return (
@@ -74,9 +88,29 @@ export default function Navbar() {
                 isActive ? 'nav-link active' : 'nav-link'
               }
             >
-              {link.label}
+              {t(link.key)}
             </NavLink>
           ))}
+
+          <label className="language-selector">
+            <Languages size={18} aria-hidden="true" />
+
+            <span className="sr-only">{t('chooseLanguage')}</span>
+
+            <select
+              value={language}
+              onChange={handleLanguageChange}
+              aria-label={t('chooseLanguage')}
+            >
+              {languageOptions.map((option) => (
+                <option key={option.code} value={option.code}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+
+            <ChevronDown size={15} className="language-chevron" aria-hidden="true" />
+          </label>
         </nav>
       </div>
     </header>

@@ -1,3 +1,10 @@
 
 # Local backup files
 frontend/src/pages/*.backup
+
+# Backend secrets and local database
+backend/.env
+backend/venv/
+backend/instance/
+__pycache__/
+*.py[cod]

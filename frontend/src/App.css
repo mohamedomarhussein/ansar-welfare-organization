@@ -2124,3 +2124,237 @@ body {
     padding: 8px !important;
   }
 }
+
+/* About page: mission and vision */
+.about-mission-vision {
+  background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+}
+
+.about-mission-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.about-mission-card {
+  padding: 32px;
+  border: 1px solid #dceafb;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgb(25 75 130 / 7%);
+}
+
+.about-mission-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  color: #1769aa;
+  background: #e8f4ff;
+}
+
+.about-mission-card h2 {
+  margin: 10px 0 12px;
+  color: #12385d;
+  line-height: 1.3;
+}
+
+.about-mission-card p {
+  margin: 0;
+  color: #53677c;
+  line-height: 1.8;
+}
+
+.about-vision-card {
+  background: linear-gradient(145deg, #ffffff 0%, #eff7ff 100%);
+}
+
+/* Floating Scroll to Top button */
+.scroll-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  color: #ffffff;
+  background: #1769aa;
+  box-shadow: 0 8px 24px rgb(23 105 170 / 30%);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-4px);
+  background: #0f548d;
+  box-shadow: 0 12px 28px rgb(23 105 170 / 36%);
+}
+
+.scroll-to-top:focus-visible {
+  outline: 3px solid #9dd5ff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  .about-mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-mission-card {
+    padding: 24px;
+  }
+
+  .scroll-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top {
+    transition: none;
+  }
+}
+
+/* Add comfortable spacing below the navbar on the About page */
+.about-hero {
+  padding-top: 64px;
+}
+
+@media (max-width: 700px) {
+  .about-hero {
+    padding-top: 48px;
+  }
+}
+
+/* Language selector */
+.language-selector {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid #d7e8fb;
+  border-radius: 10px;
+  background: #f5faff;
+  color: #1266a8;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.language-selector:hover,
+.language-selector:focus-within {
+  border-color: #1266a8;
+  background: #eaf5ff;
+}
+
+.language-selector select {
+  max-width: 115px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #103f69;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.language-selector select option {
+  background: #ffffff;
+  color: #103f69;
+}
+
+.language-chevron {
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Language selector on mobile navigation */
+@media (max-width: 900px) {
+  .language-selector {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  .language-selector select {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .language-selector {
+    min-height: 42px;
+    padding: 0 12px;
+  }
+
+  .language-selector select {
+    font-size: 0.95rem;
+  }
+}
+
+/* Right-to-left layout for Arabic */
+html[dir='rtl'] body {
+  text-align: right;
+}
+
+html[dir='rtl'] .language-selector {
+  direction: rtl;
+}
+
+html[dir='rtl'] .main-nav {
+  direction: rtl;
+}
+
+
+/* Improved Arabic right-to-left navigation */
+html[dir='rtl'] .nav-container {
+  direction: rtl;
+}
+
+html[dir='rtl'] .brand {
+  direction: rtl;
+}
+
+html[dir='rtl'] .main-nav {
+  justify-content: flex-start;
+}
+
+html[dir='rtl'] .mobile-menu-toggle {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir='rtl'] .language-selector select {
+  text-align: right;
+}
+
+html[dir='rtl'] .not-found {
+  direction: rtl;
+}
