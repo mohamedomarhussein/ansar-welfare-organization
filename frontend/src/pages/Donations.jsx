@@ -35,9 +35,7 @@ const translations = {
     paymentIntro: 'Use these details in your M-Pesa menu. Each value has its own copy button.',
     paybillLabel: 'Business number (Paybill)',
     accountLabel: 'Account number',
-    donorNameLabel: 'Your full name',
-    donorNamePlaceholder: 'Enter your full name',
-    copyName: 'Copy Name',
+    accountInstruction: 'Enter your full name as the M-Pesa account number.',
     copyPaybill: 'Copy Paybill',
     copyAccount: 'Copy Account',
     copied: 'Copied!',
@@ -87,9 +85,7 @@ const translations = {
     paymentIntro: 'Tumia maelezo haya kwenye menyu ya M-Pesa. Kila namba ina kitufe chake cha kunakili.',
     paybillLabel: 'Nambari ya biashara (Paybill)',
     accountLabel: 'Nambari ya akaunti',
-    donorNameLabel: 'Jina lako kamili',
-    donorNamePlaceholder: 'Weka jina lako kamili',
-    copyName: 'Nakili jina',
+    accountInstruction: 'Weka jina lako kamili kama nambari ya akaunti ya M-Pesa.',
     copyPaybill: 'Nakili Paybill',
     copyAccount: 'Nakili akaunti',
     copied: 'Imenakiliwa!',
@@ -139,9 +135,7 @@ const translations = {
     paymentIntro: 'Faahfaahintan ku isticmaal menu-ga M-Pesa. Nambar kasta wuxuu leeyahay badhan lagu koobiyeeyo.',
     paybillLabel: 'Lambarka ganacsiga (Paybill)',
     accountLabel: 'Lambarka akoonka',
-    donorNameLabel: 'Magacaaga oo buuxa',
-    donorNamePlaceholder: 'Geli magacaaga oo buuxa',
-    copyName: 'Koobi magaca',
+    accountInstruction: 'Geli magacaaga oo buuxa lambarka akoonka M-Pesa ahaan.',
     copyPaybill: 'Koobi Paybill',
     copyAccount: 'Koobi akoonka',
     copied: 'Waa la koobiyeeyay!',
@@ -191,9 +185,7 @@ const translations = {
     paymentIntro: 'استخدم هذه التفاصيل في قائمة إم-بيسا. لكل رقم زر خاص للنسخ.',
     paybillLabel: 'رقم النشاط التجاري (Paybill)',
     accountLabel: 'رقم الحساب',
-    donorNameLabel: 'اسمك الكامل',
-    donorNamePlaceholder: 'أدخل اسمك الكامل',
-    copyName: 'نسخ الاسم',
+    accountInstruction: 'أدخل اسمك الكامل في خانة رقم حساب إم-بيسا.',
     copyPaybill: 'نسخ Paybill',
     copyAccount: 'نسخ الحساب',
     copied: 'تم النسخ!',
@@ -233,7 +225,6 @@ export default function Donations() {
   const { language } = useLanguage()
   const text = translations[language] || translations.en
   const [method, setMethod] = useState('M-Pesa')
-  const [donorName, setDonorName] = useState('')
   const [copiedField, setCopiedField] = useState('')
 
   async function copyValue(value, fieldName) {
@@ -354,27 +345,9 @@ export default function Donations() {
 
                 <div className="payment-row">
                   <div className="payment-row-text">
-                    <label htmlFor="donor-full-name">{text.donorNameLabel}</label>
-                    <input
-                      id="donor-full-name"
-                      className="donor-name-input"
-                      type="text"
-                      autoComplete="name"
-                      value={donorName}
-                      onChange={(event) => setDonorName(event.target.value)}
-                      placeholder={text.donorNamePlaceholder}
-                      maxLength={100}
-                    />
+                    <span>{text.accountLabel}</span>
+                    <p>{text.accountInstruction}</p>
                   </div>
-                  <button
-                    type="button"
-                    className="payment-copy-button"
-                    disabled={!donorName.trim()}
-                    onClick={() => copyValue(donorName.trim(), 'donor name')}
-                  >
-                    {copiedField === 'donor name' ? '✓' : <Copy size={17} />}
-                    {copiedField === 'donor name' ? text.copied : text.copyName}
-                  </button>
                 </div>
 
                 <div className="mpesa-instructions">
