@@ -2358,3 +2358,38 @@ html[dir='rtl'] .language-selector select {
 html[dir='rtl'] .not-found {
   direction: rtl;
 }
+
+/* Add comfortable space below the navbar on the Donation page */
+.donations-page > .page-hero {
+  padding-top: 64px;
+}
+
+@media (max-width: 768px) {
+  .donations-page > .page-hero {
+    padding-top: 48px;
+  }
+}
+
+/* Donor name field on the M-Pesa donation form */
+.donations-page .donor-name-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+  padding: 11px 12px;
+  border: 1px solid #cbdced;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #173b60;
+  font: inherit;
+}
+
+.donations-page .donor-name-input:focus {
+  border-color: #2473bd;
+  outline: 3px solid #dceeff;
+}
+
+.donations-page .payment-copy-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

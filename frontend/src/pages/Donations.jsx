@@ -35,6 +35,9 @@ const translations = {
     paymentIntro: 'Use these details in your M-Pesa menu. Each value has its own copy button.',
     paybillLabel: 'Business number (Paybill)',
     accountLabel: 'Account number',
+    donorNameLabel: 'Your full name',
+    donorNamePlaceholder: 'Enter your full name',
+    copyName: 'Copy Name',
     copyPaybill: 'Copy Paybill',
     copyAccount: 'Copy Account',
     copied: 'Copied!',
@@ -84,6 +87,9 @@ const translations = {
     paymentIntro: 'Tumia maelezo haya kwenye menyu ya M-Pesa. Kila namba ina kitufe chake cha kunakili.',
     paybillLabel: 'Nambari ya biashara (Paybill)',
     accountLabel: 'Nambari ya akaunti',
+    donorNameLabel: 'Jina lako kamili',
+    donorNamePlaceholder: 'Weka jina lako kamili',
+    copyName: 'Nakili jina',
     copyPaybill: 'Nakili Paybill',
     copyAccount: 'Nakili akaunti',
     copied: 'Imenakiliwa!',
@@ -133,6 +139,9 @@ const translations = {
     paymentIntro: 'Faahfaahintan ku isticmaal menu-ga M-Pesa. Nambar kasta wuxuu leeyahay badhan lagu koobiyeeyo.',
     paybillLabel: 'Lambarka ganacsiga (Paybill)',
     accountLabel: 'Lambarka akoonka',
+    donorNameLabel: 'Magacaaga oo buuxa',
+    donorNamePlaceholder: 'Geli magacaaga oo buuxa',
+    copyName: 'Koobi magaca',
     copyPaybill: 'Koobi Paybill',
     copyAccount: 'Koobi akoonka',
     copied: 'Waa la koobiyeeyay!',
@@ -182,6 +191,9 @@ const translations = {
     paymentIntro: 'استخدم هذه التفاصيل في قائمة إم-بيسا. لكل رقم زر خاص للنسخ.',
     paybillLabel: 'رقم النشاط التجاري (Paybill)',
     accountLabel: 'رقم الحساب',
+    donorNameLabel: 'اسمك الكامل',
+    donorNamePlaceholder: 'أدخل اسمك الكامل',
+    copyName: 'نسخ الاسم',
     copyPaybill: 'نسخ Paybill',
     copyAccount: 'نسخ الحساب',
     copied: 'تم النسخ!',
@@ -221,6 +233,7 @@ export default function Donations() {
   const { language } = useLanguage()
   const text = translations[language] || translations.en
   const [method, setMethod] = useState('M-Pesa')
+  const [donorName, setDonorName] = useState('')
   const [copiedField, setCopiedField] = useState('')
 
   async function copyValue(value, fieldName) {
@@ -341,16 +354,26 @@ export default function Donations() {
 
                 <div className="payment-row">
                   <div className="payment-row-text">
-                    <span>{text.accountLabel}</span>
-                    <strong>01100611210001</strong>
+                    <label htmlFor="donor-full-name">{text.donorNameLabel}</label>
+                    <input
+                      id="donor-full-name"
+                      className="donor-name-input"
+                      type="text"
+                      autoComplete="name"
+                      value={donorName}
+                      onChange={(event) => setDonorName(event.target.value)}
+                      placeholder={text.donorNamePlaceholder}
+                      maxLength={100}
+                    />
                   </div>
                   <button
                     type="button"
                     className="payment-copy-button"
-                    onClick={() => copyValue('01100611210001', 'account number')}
+                    disabled={!donorName.trim()}
+                    onClick={() => copyValue(donorName.trim(), 'donor name')}
                   >
-                    {copiedField === 'account number' ? '✓' : <Copy size={17} />}
-                    {copiedField === 'account number' ? text.copied : text.copyAccount}
+                    {copiedField === 'donor name' ? '✓' : <Copy size={17} />}
+                    {copiedField === 'donor name' ? text.copied : text.copyName}
                   </button>
                 </div>
 
