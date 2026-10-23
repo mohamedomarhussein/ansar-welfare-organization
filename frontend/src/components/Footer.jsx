@@ -23,6 +23,11 @@ const footerTranslations = {
     contactUs: 'Contact Us',
     emailOrganization: 'Email the organization',
     supportWork: 'Support Our Work',
+    bankDonations: 'Bank Donations',
+    bankName: 'Bank:',
+    bankBranch: 'Branch:',
+    bankAccountNumber: 'Account Number:',
+    fullNameAccount: 'Enter your full name',
     paybill: 'M-Pesa Paybill:',
     account: 'Account:',
     paymentNote: 'Please verify payment details before sending a contribution.',
@@ -46,6 +51,11 @@ const footerTranslations = {
     contactUs: 'Wasiliana Nasi',
     emailOrganization: 'Tuma barua pepe kwa shirika',
     supportWork: 'Saidia Kazi Yetu',
+    bankDonations: 'Michango ya Benki',
+    bankName: 'Benki:',
+    bankBranch: 'Tawi:',
+    bankAccountNumber: 'Nambari ya Akaunti:',
+    fullNameAccount: 'Weka jina lako kamili',
     paybill: 'Nambari ya M-Pesa Paybill:',
     account: 'Akaunti:',
     paymentNote: 'Tafadhali hakikisha maelezo ya malipo kabla ya kutuma mchango.',
@@ -69,6 +79,11 @@ const footerTranslations = {
     contactUs: 'Nala Soo Xiriir',
     emailOrganization: 'Iimayl u dir ururka',
     supportWork: 'Taageer Shaqadeenna',
+    bankDonations: 'Deeqaha Bangiga',
+    bankName: 'Bangiga:',
+    bankBranch: 'Laanta:',
+    bankAccountNumber: 'Lambarka Akoonka:',
+    fullNameAccount: 'Geli magacaaga oo buuxa',
     paybill: 'M-Pesa Paybill:',
     account: 'Akoon:',
     paymentNote: 'Fadlan xaqiiji faahfaahinta lacag-bixinta ka hor intaadan deeq dirin.',
@@ -92,6 +107,11 @@ const footerTranslations = {
     contactUs: 'اتصل بنا',
     emailOrganization: 'راسلوا المنظمة بالبريد الإلكتروني',
     supportWork: 'ادعموا أعمالنا',
+    bankDonations: 'التبرعات البنكية',
+    bankName: 'البنك:',
+    bankBranch: 'الفرع:',
+    bankAccountNumber: 'رقم الحساب:',
+    fullNameAccount: 'أدخل اسمك الكامل',
     paybill: 'رقم الدفع عبر M-Pesa:',
     account: 'رقم الحساب:',
     paymentNote: 'يرجى التأكد من تفاصيل الدفع قبل إرسال التبرع.',
@@ -174,7 +194,23 @@ export default function Footer() {
             </li>
             <li>
               <Smartphone size={17} />
-              <span>{t.account} <strong>01100611210001</strong></span>
+              <span>{t.account} <strong>{t.fullNameAccount}</strong></span>
+            </li>
+          </ul>
+
+          <h4 className="footer-bank-heading">{t.bankDonations}</h4>
+          <ul className="contact-list footer-contact">
+            <li>
+              <Smartphone size={17} />
+              <span>{t.bankName} <strong>Co-operative Bank of Kenya</strong></span>
+            </li>
+            <li>
+              <MapPin size={17} />
+              <span>{t.bankBranch} <strong>Garissa Branch</strong></span>
+            </li>
+            <li>
+              <Smartphone size={17} />
+              <span>{t.bankAccountNumber} <strong>01100611210001</strong></span>
             </li>
           </ul>
 
