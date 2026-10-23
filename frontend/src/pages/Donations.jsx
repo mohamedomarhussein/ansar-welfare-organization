@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   Heart,
   Smartphone,
+  Landmark,
   Banknote,
   FileText,
   Utensils,
@@ -12,6 +13,7 @@ import { useLanguage } from '../i18n/LanguageContext'
 
 const donationMethods = [
   { name: 'M-Pesa', icon: Smartphone },
+  { name: 'Bank', icon: Landmark },
   { name: 'Cash', icon: Banknote },
   { name: 'Cheque', icon: FileText },
   { name: 'Food', icon: Utensils },
@@ -30,7 +32,22 @@ const translations = {
     abilityText: 'Your support can help us assist needy Muslims, organize Friday-night Muhadhara at different mosques, and provide free Iftar meals during Ramadan.',
     chooseMethod: 'Choose a donation method',
     selectMethod: 'Select how you would like to contribute.',
-    methods: { 'M-Pesa': 'M-Pesa', Cash: 'Cash', Cheque: 'Cheque', Food: 'Food', Others: 'Other items' },
+    methods: { 'M-Pesa': 'M-Pesa', Cash: 'Cash', Cheque: 'Cheque', Food: 'Food', Bank: 'Bank', Others: 'Other items' },
+
+    bankTitle: 'Bank transfer',
+    bankIntro: 'Choose how you want to transfer your donation.',
+    bankToBank: 'Bank to Bank',
+    bankToMpesa: 'Bank to M-Pesa',
+    mpesaToBank: 'M-Pesa to Bank',
+    bankDestination: 'Choose a destination',
+    bankPhoneOption: 'Phone number',
+    bankPaybillOption: 'Paybill',
+    bankAccountLabel: 'Bank account number',
+    bankAccountInstruction: 'Use this account number for bank transfers.',
+    bankPhoneLabel: 'M-Pesa phone number',
+    bankPaybillInstruction: 'Enter your full name as the Paybill account number.',
+    copyBankAccount: 'Copy bank account',
+    copyPhone: 'Copy phone number',
     mpesaTitle: 'M-Pesa Paybill',
     paymentIntro: 'Use these details in your M-Pesa menu. Each value has its own copy button.',
     paybillLabel: 'Business number (Paybill)',
@@ -80,7 +97,22 @@ const translations = {
     abilityText: 'Msaada wako unaweza kutuwezesha kuwasaidia Waislamu wenye uhitaji, kuandaa mihadhara ya Ijumaa usiku katika misikiti mbalimbali na kutoa futari ya bure wakati wa Ramadhani.',
     chooseMethod: 'Chagua njia ya kutoa mchango',
     selectMethod: 'Chagua jinsi ungependa kuchangia.',
-    methods: { 'M-Pesa': 'M-Pesa', Cash: 'Pesa taslimu', Cheque: 'Hundi', Food: 'Chakula', Others: 'Vitu vingine' },
+    methods: { 'M-Pesa': 'M-Pesa', Cash: 'Pesa taslimu', Cheque: 'Hundi', Food: 'Chakula', Bank: 'Benki', Others: 'Vitu vingine' },
+
+    bankTitle: 'Uhamisho wa benki',
+    bankIntro: 'Chagua jinsi unavyotaka kutuma mchango wako.',
+    bankToBank: 'Benki kwenda Benki',
+    bankToMpesa: 'Benki kwenda M-Pesa',
+    mpesaToBank: 'M-Pesa kwenda Benki',
+    bankDestination: 'Chagua njia ya kupokea',
+    bankPhoneOption: 'Nambari ya simu',
+    bankPaybillOption: 'Paybill',
+    bankAccountLabel: 'Nambari ya akaunti ya benki',
+    bankAccountInstruction: 'Tumia nambari hii ya akaunti kwa uhamisho wa benki.',
+    bankPhoneLabel: 'Nambari ya simu ya M-Pesa',
+    bankPaybillInstruction: 'Weka jina lako kamili kama nambari ya akaunti ya Paybill.',
+    copyBankAccount: 'Nakili akaunti ya benki',
+    copyPhone: 'Nakili nambari ya simu',
     mpesaTitle: 'Lipa kwa M-Pesa Paybill',
     paymentIntro: 'Tumia maelezo haya kwenye menyu ya M-Pesa. Kila namba ina kitufe chake cha kunakili.',
     paybillLabel: 'Nambari ya biashara (Paybill)',
@@ -130,7 +162,22 @@ const translations = {
     abilityText: 'Taageeradaadu waxay naga caawin kartaa inaan caawinno Muslimiinta baahan, abaabulno muxaadarooyinka habeenka Jimcaha ee masaajidyo kala duwan, isla markaana bixinno afur bilaash ah bisha Ramadaan.',
     chooseMethod: 'Dooro habka tabarucaadka',
     selectMethod: 'Dooro sida aad jeclaan lahayd inaad wax ugu tabarucdo.',
-    methods: { 'M-Pesa': 'M-Pesa', Cash: 'Lacag caddaan ah', Cheque: 'Jeeg', Food: 'Cunto', Others: 'Alaabo kale' },
+    methods: { 'M-Pesa': 'M-Pesa', Cash: 'Lacag caddaan ah', Cheque: 'Jeeg', Food: 'Cunto', Bank: 'Bangiga', Others: 'Alaabo kale' },
+
+    bankTitle: 'Lacag u wareeji bangi',
+    bankIntro: 'Dooro sida aad u rabto inaad tabarucaadka u dirto.',
+    bankToBank: 'Bangiga ilaa Bangiga',
+    bankToMpesa: 'Bangiga ilaa M-Pesa',
+    mpesaToBank: 'M-Pesa ilaa Bangiga',
+    bankDestination: 'Dooro habka lacagta loo dirayo',
+    bankPhoneOption: 'Lambarka telefoonka',
+    bankPaybillOption: 'Paybill',
+    bankAccountLabel: 'Lambarka akoonka bangiga',
+    bankAccountInstruction: 'U isticmaal lambarkan akoonka wareejinta bangiga.',
+    bankPhoneLabel: 'Lambarka telefoonka M-Pesa',
+    bankPaybillInstruction: 'Geli magacaaga oo buuxa lambarka akoonka Paybill ahaan.',
+    copyBankAccount: 'Koobi akoonka bangiga',
+    copyPhone: 'Koobi lambarka telefoonka',
     mpesaTitle: 'M-Pesa Paybill',
     paymentIntro: 'Faahfaahintan ku isticmaal menu-ga M-Pesa. Nambar kasta wuxuu leeyahay badhan lagu koobiyeeyo.',
     paybillLabel: 'Lambarka ganacsiga (Paybill)',
@@ -180,7 +227,22 @@ const translations = {
     abilityText: 'يمكن أن تساعدنا مساهمتكم في دعم المسلمين المحتاجين وتنظيم محاضرات ليلة الجمعة في مساجد مختلفة وتقديم وجبات إفطار مجانية خلال رمضان.',
     chooseMethod: 'اختر طريقة التبرع',
     selectMethod: 'اختر الطريقة التي تود المساهمة بها.',
-    methods: { 'M-Pesa': 'إم-بيسا', Cash: 'نقداً', Cheque: 'شيك', Food: 'طعام', Others: 'مواد أخرى' },
+    methods: { 'M-Pesa': 'إم-بيسا', Cash: 'نقداً', Cheque: 'شيك', Food: 'طعام', Bank: 'البنك', Others: 'مواد أخرى' },
+
+    bankTitle: 'التحويل البنكي',
+    bankIntro: 'اختر طريقة تحويل تبرعك.',
+    bankToBank: 'من بنك إلى بنك',
+    bankToMpesa: 'من البنك إلى إم-بيسا',
+    mpesaToBank: 'من إم-بيسا إلى البنك',
+    bankDestination: 'اختر وجهة التحويل',
+    bankPhoneOption: 'رقم الهاتف',
+    bankPaybillOption: 'Paybill',
+    bankAccountLabel: 'رقم الحساب البنكي',
+    bankAccountInstruction: 'استخدم رقم الحساب هذا للتحويلات البنكية.',
+    bankPhoneLabel: 'رقم هاتف إم-بيسا',
+    bankPaybillInstruction: 'أدخل اسمك الكامل في خانة حساب Paybill.',
+    copyBankAccount: 'نسخ الحساب البنكي',
+    copyPhone: 'نسخ رقم الهاتف',
     mpesaTitle: 'الدفع عبر إم-بيسا Paybill',
     paymentIntro: 'استخدم هذه التفاصيل في قائمة إم-بيسا. لكل رقم زر خاص للنسخ.',
     paybillLabel: 'رقم النشاط التجاري (Paybill)',
@@ -225,6 +287,8 @@ export default function Donations() {
   const { language } = useLanguage()
   const text = translations[language] || translations.en
   const [method, setMethod] = useState('M-Pesa')
+  const [bankTransferType, setBankTransferType] = useState('bankToBank')
+  const [bankDestination, setBankDestination] = useState('phone')
   const [copiedField, setCopiedField] = useState('')
 
   async function copyValue(value, fieldName) {
@@ -363,6 +427,121 @@ export default function Donations() {
                   <strong>{text.paymentStatus}</strong>
                   <p>{text.paymentStatusText}</p>
                 </div>
+              </div>
+            )}
+
+
+            {method === 'Bank' && (
+              <div className="payment-details">
+                <div className="payment-heading">
+                  <Landmark size={24} />
+                  <h3>{text.bankTitle}</h3>
+                </div>
+                <p>{text.bankIntro}</p>
+                <p><strong>Co-operative Bank of Kenya — Garissa Branch</strong></p>
+
+                <div className="donation-methods">
+                  {[
+                    ['bankToBank', text.bankToBank],
+                    ['bankToMpesa', text.bankToMpesa],
+                    ['mpesaToBank', text.mpesaToBank],
+                  ].map(([value, label]) => (
+                    <button
+                      type="button"
+                      key={value}
+                      className={`donation-method ${bankTransferType === value ? 'active' : ''}`}
+                      onClick={() => setBankTransferType(value)}
+                      aria-pressed={bankTransferType === value}
+                    >
+                      <span>{label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {(bankTransferType === 'bankToBank' ||
+                  bankTransferType === 'mpesaToBank') && (
+                  <div className="payment-row">
+                    <div className="payment-row-text">
+                      <span>{text.bankAccountLabel}</span>
+                      <strong>01100611210001</strong>
+                      <p>{text.bankAccountInstruction}</p>
+                    </div>
+                    <button
+                      type="button"
+                      className="payment-copy-button"
+                      onClick={() => copyValue('01100611210001', 'Bank account')}
+                    >
+                      {copiedField === 'Bank account' ? '✓' : <Copy size={17} />}
+                      {copiedField === 'Bank account' ? text.copied : text.copyBankAccount}
+                    </button>
+                  </div>
+                )}
+
+                {bankTransferType === 'bankToMpesa' && (
+                  <>
+                    <p>{text.bankDestination}</p>
+                    <div className="donation-methods">
+                      <button
+                        type="button"
+                        className={`donation-method ${bankDestination === 'phone' ? 'active' : ''}`}
+                        onClick={() => setBankDestination('phone')}
+                        aria-pressed={bankDestination === 'phone'}
+                      >
+                        <span>{text.bankPhoneOption}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className={`donation-method ${bankDestination === 'paybill' ? 'active' : ''}`}
+                        onClick={() => setBankDestination('paybill')}
+                        aria-pressed={bankDestination === 'paybill'}
+                      >
+                        <span>{text.bankPaybillOption}</span>
+                      </button>
+                    </div>
+
+                    {bankDestination === 'phone' ? (
+                      <>
+                        {[
+                          ['0721133156', 'phone1'],
+                          ['0723003071', 'phone2'],
+                        ].map(([number, field]) => (
+                          <div className="payment-row" key={field}>
+                            <div className="payment-row-text">
+                              <span>{text.bankPhoneLabel}</span>
+                              <strong>{number}</strong>
+                            </div>
+                            <button
+                              type="button"
+                              className="payment-copy-button"
+                              onClick={() => copyValue(number, field)}
+                            >
+                              {copiedField === field ? '✓' : <Copy size={17} />}
+                              {copiedField === field ? text.copied : text.copyPhone}
+                            </button>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        <div className="payment-row">
+                          <div className="payment-row-text">
+                            <span>{text.paybillLabel}</span>
+                            <strong>4133187</strong>
+                          </div>
+                          <button
+                            type="button"
+                            className="payment-copy-button"
+                            onClick={() => copyValue('4133187', 'Bank Paybill')}
+                          >
+                            {copiedField === 'Bank Paybill' ? '✓' : <Copy size={17} />}
+                            {copiedField === 'Bank Paybill' ? text.copied : text.copyPaybill}
+                          </button>
+                        </div>
+                        <p>{text.bankPaybillInstruction}</p>
+                      </>
+                    )}
+                  </>
+                )}
               </div>
             )}
 
